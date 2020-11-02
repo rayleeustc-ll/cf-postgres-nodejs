@@ -77,7 +77,7 @@ function testBackendService(type, res){
         );
 	let queryText = "INSERT INTO words(word,definition) VALUES($1, $2)";
         client.query(
-            queryText, ["TestPostgres", "definition"],
+            queryText, ["TestPostgres", "definitions"],
             function(err, result) {
                 if (err) {
 		    console.error(err);
@@ -91,7 +91,8 @@ function testBackendService(type, res){
                console.error(err);
 	       main(type, true, res);
            }else{
-	           console.log("SELECT OK : " + result.rows[0].word);
+             console.log("SELECT OK : " + result.rows[0].word);
+             res.send("SELECT words table OK. "+"value of column word: "+ result.rows[0].word + " and value of column definition: "+ result.rows[0].definition);
         	   if ( result.rows[0].word != "TestPostgres" ){
 	                console.error("Word TestPostgres not found => Exit");
 			main(type, true, res);
@@ -101,7 +102,7 @@ function testBackendService(type, res){
         });
 }
 
-testBackendService("starting", null);
+//testBackendService("starting", null);
 function main(type, error, res) {
   if ( type == "starting") {
 	if (error) {
