@@ -1,0 +1,8 @@
+---
+applications:
+- name: postgres-example-app
+  instances: 1
+  memory:  64M
+  disk: 64M
+  buildpack: nodejs_buildpack 
+
